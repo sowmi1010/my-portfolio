@@ -2,7 +2,6 @@ import { Typewriter } from "react-simple-typewriter";
 import { Linkedin, Github, Mail } from "lucide-react";
 import profile from "../assets/profile.jpg";
 
-
 export default function Hero() {
   return (
     <section
@@ -25,9 +24,7 @@ export default function Hero() {
           className="
             w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mx-auto mb-4
             border-4 border-yellow-400 rounded-full shadow-xl
-            hover:scale-110 transition-transform duration-300
-          "
-        />
+            hover:scale-110 transition-transform duration-300"/>
         <h2
           className="
             text-2xl sm:text-3xl md:text-5xl font-extrabold mb-2 tracking-tight

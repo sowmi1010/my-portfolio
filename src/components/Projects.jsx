@@ -1,5 +1,6 @@
 import { useState } from "react";
 import projects from "../data/projects.js";
+import projects from "../data/projects.json";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -16,8 +17,7 @@ export default function Projects() {
         py-16 px-4
         bg-gradient-to-br from-purple-50 to-purple-100
         dark:from-gray-900 dark:to-gray-800
-        relative
-      "
+        relative"
     >
       <h2
         className="
@@ -62,34 +62,44 @@ export default function Projects() {
                 "
               />
               <div className="p-4">
-                <h3 className="
+                <h3
+                  className="
                   text-lg sm:text-xl font-semibold
                   text-purple-800 dark:text-yellow-200 mb-1
                   group-hover:text-pink-600 transition
-                ">
+                "
+                >
                   {proj.title}
                 </h3>
-                <p className="
+                <p
+                  className="
                   text-gray-600 dark:text-gray-300 text-xs sm:text-sm mb-2
                   line-clamp-3
-                ">
+                "
+                >
                   {proj.desc}
                 </p>
-                <p className="
+                <p
+                  className="
                   text-xs text-purple-700 dark:text-yellow-300
                   font-semibold mb-2
-                ">
+                "
+                >
                   {proj.tech}
                 </p>
               </div>
               {/* hover overlay */}
-              <div className="
+              <div
+                className="
                 absolute inset-0 bg-purple-800 bg-opacity-70
                 dark:bg-gray-900/80 opacity-0 group-hover:opacity-100
                 text-white flex items-center justify-center text-center
                 p-4 transition
-              ">
-                <span className="text-xs sm:text-sm">Click to view details</span>
+              "
+              >
+                <span className="text-xs sm:text-sm">
+                  Click to view details
+                </span>
               </div>
             </div>
           </SwiperSlide>
@@ -98,14 +108,18 @@ export default function Projects() {
 
       {/* modal */}
       {selectedProject && (
-        <div className="
+        <div
+          className="
           fixed inset-0 bg-black bg-opacity-60
           flex justify-center items-center z-50 p-4
-        ">
-          <div className="
+        "
+        >
+          <div
+            className="
             bg-white dark:bg-gray-800 rounded-xl shadow-xl
             p-4 sm:p-6 relative max-w-lg w-full animate-fadeIn
-          ">
+          "
+          >
             <button
               onClick={() => setSelectedProject(null)}
               className="
@@ -123,19 +137,23 @@ export default function Projects() {
                 max-h-60 sm:max-h-72
               "
             />
-            <h3 className="
+            <h3
+              className="
               text-xl sm:text-2xl font-bold
               text-purple-800 dark:text-yellow-200 mb-2
-            ">
+            "
+            >
               {selectedProject.title}
             </h3>
             <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-2">
               {selectedProject.desc}
             </p>
-            <p className="
+            <p
+              className="
               text-xs text-purple-700 dark:text-yellow-300
               font-semibold mb-4
-            ">
+            "
+            >
               {selectedProject.tech}
             </p>
             <a
@@ -154,15 +172,19 @@ export default function Projects() {
       )}
 
       {/* decorative blobs */}
-      <div className="
+      <div
+        className="
         absolute top-0 left-0 w-36 sm:w-48 h-36 sm:h-48
         bg-yellow-300 rounded-full opacity-20 blur-3xl animate-pulse
-      "></div>
-      <div className="
+      "
+      ></div>
+      <div
+        className="
         absolute bottom-0 right-0 w-52 sm:w-72 h-52 sm:h-72
         bg-pink-400 rounded-full opacity-20 blur-3xl animate-pulse
         delay-1000
-      "></div>
+      "
+      ></div>
     </section>
   );
 }
