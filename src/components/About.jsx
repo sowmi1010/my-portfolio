@@ -1,6 +1,5 @@
 import { Typewriter } from "react-simple-typewriter";
-import profile from "../assets/profile.jpg";
-
+import profileImage from "../assets/profile.jpg";
 
 export default function About() {
   return (
@@ -22,7 +21,7 @@ export default function About() {
       {/* left side image */}
       <div className="z-10">
         <img
-          src={profile}
+          src={profileImage}
           alt="Sowmiya"
           className="
             w-40 sm:w-52 md:w-60 lg:w-72 xl:w-80
@@ -46,9 +45,12 @@ export default function About() {
           About Me
         </h2>
         <p className="text-base sm:text-lg leading-relaxed mb-4 px-2 lg:px-0">
-          <span className="font-bold text-yellow-600">Creating</span> impactful user interfaces with
-          <span className="font-bold text-pink-600"> pixel-perfect</span> detail, while
-          <span className="font-bold text-yellow-600"> empowering</span> students to grow.
+          <span className="font-bold text-yellow-600">Creating</span> impactful
+          user interfaces with
+          <span className="font-bold text-pink-600"> pixel-perfect</span>{" "}
+          detail, while
+          <span className="font-bold text-yellow-600"> empowering</span>{" "}
+          students to grow.
         </p>
         <div className="text-lg sm:text-xl text-yellow-600 font-semibold mb-4">
           <Typewriter
@@ -67,8 +69,9 @@ export default function About() {
           />
         </div>
         <p className="text-sm sm:text-base mb-4 px-2 lg:px-0">
-          <span className="font-semibold text-yellow-600">Education:</span> B.E in Computer Science Engineering, <br />
-         Arunai Engineering College
+          <span className="font-semibold text-yellow-600">Education:</span> B.E
+          in Computer Science Engineering, <br />
+          Arunai Engineering College
         </p>
         <a
           href="#skills"

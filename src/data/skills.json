@@ -1,13 +1,13 @@
 [
-  { "name": "Java", "image": "/my-protfolio/src/assets/java.png", "description": "Experienced with OOP, Spring Boot, REST." },
-  { "name": "Python", "image": "/my-protfolio/src/assets/python.png", "description": "Flask, scripting, automation skills." },
-  { "name": "HTML", "image": "/my-protfolio/src/assets/html.png", "description": "Semantic, SEO-friendly markup." },
-  { "name": "CSS", "image": "/my-protfolio/src/assets/css.png", "description": "Responsive, Flexbox, Grid layouts." },
-  { "name": "Tailwind CSS", "image": "/my-protfolio/src/assets/tailwind.png", "description": "Utility-first framework for rapid design." },
-  { "name": "JavaScript", "image": "/my-protfolio/src/assets/javascript.png", "description": "ES6+, async, DOM manipulation." },
-  { "name": "React", "image": "/my-protfolio/src/assets/react.png", "description": "Hooks, state management, SPA architecture." },
-  { "name": "Express.js", "image": "/my-protfolio/src/assets/express.png", "description": "Node.js routing and middleware." },
-  { "name": "Node.js", "image": "/my-protfolio/src/assets/node.png", "description": "Server-side JS, event-driven." },
-  { "name": "MongoDB", "image": "/my-protfolio/src/assets/mongodb.webp", "description": "NoSQL document database." },
-  { "name": "MySQL", "image": "/my-protfolio/src/assets/mysql.png", "description": "Relational SQL databases." }
+  { "name": "Java", "image": "/java.png", "description": "Experienced with OOP, Spring Boot, REST." },
+  { "name": "Python", "image": "/python.png", "description": "Flask, scripting, automation skills." },
+  { "name": "HTML", "image": "/html.png", "description": "Semantic, SEO-friendly markup." },
+  { "name": "CSS", "image": "/css.png", "description": "Responsive, Flexbox, Grid layouts." },
+  { "name": "Tailwind CSS", "image": "/tailwind.png", "description": "Utility-first framework for rapid design." },
+  { "name": "JavaScript", "image": "/javascript.png", "description": "ES6+, async, DOM manipulation." },
+  { "name": "React", "image": "/react.png", "description": "Hooks, state management, SPA architecture." },
+  { "name": "Express.js", "image": "/express.png", "description": "Node.js routing and middleware." },
+  { "name": "Node.js", "image": "/node.png", "description": "Server-side JS, event-driven." },
+  { "name": "MongoDB", "image": "/mongodb.webp", "description": "NoSQL document database." },
+  { "name": "MySQL", "image": "/mysql.png", "description": "Relational SQL databases." }
 ]
