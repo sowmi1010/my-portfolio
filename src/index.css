@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Oswald:wght@500;700&display=swap');
+@import "swiper/css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* global typography */
+body {
+  font-family: 'Nunito', sans-serif;
+}
+h1, h2, h3, h4 {
+  font-family: 'Oswald', sans-serif;
+}
+
+/* flip card container */
+.flip-card {
+  perspective: 1000px;
+}
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s ease;
+  transform-style: preserve-3d;
+}
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  backface-visibility: hidden;
+}
+
+/* front side */
+.flip-card-front {
+  background: white;
+  color: #1e293b; /* slate-800 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* back side with gradient */
+.flip-card-back {
+  background: linear-gradient(to bottom right, #facc15, #fcd34d, #fde68a); /* yellow gradient */
+  color: #1e293b; /* slate-800 for contrast */
+  transform: rotateY(180deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  text-align: center;
+}
+
+/* dark mode flip-card back override */
+.dark .flip-card-back {
+  background: linear-gradient(to bottom right, #334155, #475569, #64748b); /* slate-700 gradient */
+  color: #facc15; /* yellow-400 for contrast */
+}
+
+/* subtle hover effect for depth */
+.flip-card:hover {
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* blob swirl animations */
+@keyframes swirl {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(20px, 20px) scale(1.2); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+/* floating bounce animation (if needed elsewhere) */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}

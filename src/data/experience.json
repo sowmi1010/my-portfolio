@@ -1,0 +1,48 @@
+[
+ {
+  "title": "Trainer/Developer Full Stack",
+  "company": "Quest Technologies, Avadi",
+  "time": "Jan 2025 – Present",
+  "points": [
+    "Conducted training on MERN stack, Java, Python, Flask, and SQL databases."
+  ],
+  "icon": "Users"
+},
+  {
+    "title": "Full Stack Developer Trainer",
+    "company": "SRM Institute, Vandavasi",
+    "time": "Jun 2024 – Nov 2024",
+    "points": [
+      "Delivered workshops on Java, Spring Boot, HTML, CSS, JavaScript, C, and C++."
+    ],
+    "icon": "GraduationCap"
+  },
+  {
+    "title": "Frontend Developer",
+    "company": "SCRATCHBAC Pvt. Ltd, Singapore",
+    "time": "Dec 2022 – May 2024",
+    "points": [
+      "Developed a social networking platform using Phoenix Framework and LiveView.",
+      "Built responsive user interfaces with Tailwind CSS."
+    ],
+    "icon": "Code"
+  },
+  {
+    "title": "Frontend Developer",
+    "company": "INodesys Technologies",
+    "time": "Feb 2022 – Nov 2022",
+    "points": [
+      "Created static and dynamic websites with React.js and Tailwind CSS."
+    ],
+    "icon": "Code"
+  },
+  {
+    "title": "Data Analyst",
+    "company": "Foxconn India Pvt Ltd",
+    "time": "Jan 2021 – Jan 2022",
+    "points": [
+      "Analyzed production data for optimization and reporting."
+    ],
+    "icon": "Database"
+  }
+]
