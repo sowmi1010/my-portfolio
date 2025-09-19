@@ -69,9 +69,8 @@ export default function About() {
           />
         </div>
         <p className="text-sm sm:text-base mb-4 px-2 lg:px-0">
-          <span className="font-semibold text-yellow-600">Education:</span> B.E
-          in Computer Science Engineering, <br />
-          Arunai Engineering College
+          <span className="font-semibold text-yellow-600">Education:</span> Diploma in Computer Science, <br />
+          Dharmambal Womens Polytechnic College, Chennai
         </p>
         <a
           href="#skills"
