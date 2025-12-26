@@ -5,8 +5,23 @@
     <link rel="icon" type="image/svg+xml" href="/my-portfolio/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + React</title>
-    <script type="module" crossorigin src="/my-portfolio/assets/index-UzYk7l5n.js"></script>
-    <link rel="stylesheet" crossorigin href="/my-portfolio/assets/index-DAI8loQU.css">
+<script>
+  // Immediately enable dark BEFORE UI renders (no white flash)
+  const saved = localStorage.getItem("theme");
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+  if (!saved) {
+    // first load – force dark as default
+    document.documentElement.classList.add("dark");
+    localStorage.setItem("theme", "dark");
+  } else if (saved === "dark") {
+    document.documentElement.classList.add("dark");
+  }
+</script>
+
+
+    <script type="module" crossorigin src="/my-portfolio/assets/index-B9b07A02.js"></script>
+    <link rel="stylesheet" crossorigin href="/my-portfolio/assets/index-KG4t4dgo.css">
   </head>
   <body>
     <div id="root"></div>
