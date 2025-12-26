@@ -1,3 +1,5 @@
+// src/App.jsx
+import PageWrapper from "./components/layout/PageWrapper";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -9,7 +11,7 @@ import Footer from "./components/Footer";
 
 export default function App() {
   return (
-    <div>
+    <PageWrapper>
       <Header />
       <Hero />
       <About />
@@ -18,6 +20,6 @@ export default function App() {
       <Projects />
       <Contact />
       <Footer />
-    </div>
+    </PageWrapper>
   );
 }

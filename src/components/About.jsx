@@ -1,87 +1,159 @@
-import { Typewriter } from "react-simple-typewriter";
+import { motion } from "framer-motion";
 import profileImage from "../assets/profile.jpg";
+import { useState } from "react";
+
+const textStagger = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.15, duration: 0.6, ease: "easeOut" }
+  })
+};
 
 export default function About() {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
   return (
     <section
       id="about"
       className="
-        relative overflow-hidden flex flex-col lg:flex-row items-center justify-center
-        gap-8 md:gap-12 lg:gap-16 px-4 py-12
-        md:min-h-screen
-        bg-gradient-to-br from-purple-50 via-purple-100 to-purple-200
-        dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-black
-        transition-colors duration-500
+        py-28 md:py-36 px-6 md:px-10
+        overflow-hidden
+        bg-gradient-to-b from-white to-[#f1e5ff]
+        dark:from-[#05030a] dark:via-[#0f001c] dark:to-[#080012]
       "
+      onMouseMove={(e)=>setMousePos({ x:e.clientX, y:e.clientY })}
     >
-      {/* animated blobs */}
-      <div className="absolute top-0 left-0 w-40 md:w-60 lg:w-80 h-40 md:h-60 lg:h-80 bg-purple-400 opacity-20 rounded-full blur-3xl animate-[swirl_12s_ease-in-out_infinite]"></div>
-      <div className="absolute bottom-0 right-0 w-40 md:w-60 lg:w-80 h-40 md:h-60 lg:h-80 bg-yellow-300 opacity-20 rounded-full blur-3xl animate-[swirl_15s_ease-in-out_infinite] delay-1000"></div>
 
-      {/* left side image */}
-      <div className="z-10">
-        <img
-          src={profileImage}
-          alt="Sowmiya"
-          className="
-            w-40 sm:w-52 md:w-60 lg:w-72 xl:w-80
-            h-40 sm:h-52 md:h-60 lg:h-72 xl:h-80
-            object-fill rounded-2xl shadow-2xl
-            border-4 border-purple-500
-            hover:scale-105 transition duration-500
-          "
-        />
-      </div>
-
-      {/* right side text */}
-      <div
+      {/* 🎯 Neon Spotlight FOLLOW CURSOR */}
+      <motion.div
+        animate={{ x: mousePos.x - 250, y: mousePos.y - 250 }}
+        transition={{ type:"spring", stiffness:60, damping:22 }}
         className="
-          z-10 flex flex-col justify-center items-center lg:items-start text-center lg:text-left
-          text-purple-900 dark:text-yellow-100
-          max-w-xl
+          pointer-events-none fixed z-0
+          w-[420px] h-[420px] rounded-full 
+          bg-white/10 dark:bg-purple-500/10
+          blur-[130px] opacity-20
         "
-      >
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">
-          About Me
-        </h2>
-        <p className="text-base sm:text-lg leading-relaxed mb-4 px-2 lg:px-0">
-          <span className="font-bold text-yellow-600">Creating</span> impactful
-          user interfaces with
-          <span className="font-bold text-pink-600"> pixel-perfect</span>{" "}
-          detail, while
-          <span className="font-bold text-yellow-600"> empowering</span>{" "}
-          students to grow.
-        </p>
-        <div className="text-lg sm:text-xl text-yellow-600 font-semibold mb-4">
-          <Typewriter
-            words={[
-              "Frontend Developer",
-              "React Specialist",
-              "UI Designer",
-              "Coding Mentor",
-            ]}
-            loop
-            cursor
-            cursorStyle="_"
-            typeSpeed={50}
-            deleteSpeed={30}
-            delaySpeed={1500}
-          />
-        </div>
-        <p className="text-sm sm:text-base mb-4 px-2 lg:px-0">
-          <span className="font-semibold text-yellow-600">Education:</span> Diploma in Computer Science, <br />
-          Dharmambal Womens Polytechnic College, Chennai
-        </p>
-        <a
-          href="#skills"
-          className="
-            inline-block bg-yellow-400 text-purple-900
-            px-4 sm:px-6 py-2 sm:py-3 rounded-full font-bold
-            hover:bg-yellow-300 transition shadow
-          "
+      />
+
+      {/* 🟣 Cyber-Glass Floating RINGS (Responsive controlled %) */}
+      <motion.div
+        animate={{ scale:[1,1.1,1], opacity:[0.15,0.35,0.15] }}
+        transition={{ duration:14, repeat:Infinity }}
+        className="absolute top-[10%] left-[5%] w-[30vw] h-[30vw] bg-purple-600/30 dark:bg-purple-600/20 blur-[130px] rounded-full"
+      />
+      <motion.div
+        animate={{ scale:[1,1.2,1], opacity:[0.1,0.4,0.1] }}
+        transition={{ duration:18, repeat:Infinity }}
+        className="absolute bottom-[10%] right-[5%] w-[35vw] h-[35vw] bg-pink-500/30 dark:bg-pink-500/20 blur-[150px] rounded-full"
+      />
+
+      {/* 🧊 MAIN CONTENT */}
+      <div className="relative z-10 max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-16">
+
+        {/* 🖼️ Profile Neon-Glass Card */}
+        <motion.div
+          initial={{ opacity:0, x:-50 }}
+          whileInView={{ opacity:1, x:0 }}
+          viewport={{ once:true, amount:0.4 }}
+          transition={{ duration:0.6 }}
+          className="lg:w-1/2 flex justify-center"
         >
-          View My Skills
-        </a>
+          <motion.div
+            whileHover={{ y:-10, scale:1.02 }}
+            transition={{ type:"spring", stiffness:120 }}
+            className="
+              relative p-[3px] rounded-[2rem]
+              bg-gradient-to-r from-purple-500 via-pink-400 to-yellow-300
+              shadow-[0_0_25px_rgba(255,0,255,0.45)]
+            "
+          >
+            <div className="
+              rounded-[1.8rem] overflow-hidden
+              bg-white/40 dark:bg-[#00000040]
+              backdrop-blur-xl border border-white/30
+              shadow-xl
+            ">
+              <img
+                src={profileImage}
+                className="w-56 md:w-72 lg:w-80 h-auto object-cover rounded-[1.8rem]"
+                alt="Sowmiya"
+              />
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* 📝 Text */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once:true, amount:0.3 }}
+          className="lg:w-1/2 max-w-xl text-center lg:text-left dark:text-gray-100"
+        >
+          <motion.h2
+            variants={textStagger}
+            custom={1}
+            className="
+              text-4xl md:text-5xl font-bold mb-6
+              bg-gradient-to-r from-purple-800 via-fuchsia-500 to-pink-500
+              dark:from-yellow-200 dark:to-yellow-400
+              bg-clip-text text-transparent
+            "
+          >
+            About Me
+          </motion.h2>
+
+          <motion.p
+            variants={textStagger}
+            custom={2}
+            className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-4"
+          >
+            I build digital products with <span className="font-semibold text-purple-600 dark:text-yellow-300">MERN Stack</span> and mentor students to enter tech with confidence.
+          </motion.p>
+
+          <motion.p
+            variants={textStagger}
+            custom={3}
+            className="text-sm dark:text-gray-400 mb-6"
+          >
+            Diploma in Computer Science — Dharmambal Women’s Polytechnic College, Chennai.
+          </motion.p>
+
+          {/* Counters */}
+          <motion.div
+            variants={textStagger}
+            custom={4}
+            className="flex justify-center lg:justify-start gap-8 mb-6"
+          >
+            {[
+              { num:"5+", label:"Years Experience" },
+              { num:"100+", label:"Students Mentored" },
+              { num:"10+", label:"Projects Done" }
+            ].map((item, i)=>(
+              <motion.div key={i} whileHover={{ scale:1.1 }} className="text-center">
+                <p className="text-3xl font-bold text-purple-700 dark:text-yellow-300">{item.num}</p>
+                <p className="text-xs opacity-60 dark:opacity-70">{item.label}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <motion.a
+            variants={textStagger}
+            custom={5}
+            href="#skills"
+            whileHover={{ scale:1.05 }}
+            className="
+              inline-block px-8 py-3 rounded-full font-semibold
+              bg-purple-600 text-white dark:bg-yellow-400 dark:text-black
+              shadow-md transition
+            "
+          >
+            View Skills →
+          </motion.a>
+        </motion.div>
+
       </div>
     </section>
   );

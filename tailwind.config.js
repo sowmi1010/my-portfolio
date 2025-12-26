@@ -6,7 +6,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}", // adjust to your paths
   ],
   theme: {
-    extend: {},
+    extend: {
+            lightCard: "#ffffff",
+      darkCard: "#0f001a",
+
+    },
   },
-  plugins: [],
+ plugins: [require("@tailwindcss/line-clamp")]
 }

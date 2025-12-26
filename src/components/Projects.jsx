@@ -1,189 +1,202 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import projects from "../data/projects.js";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import { Pagination, Autoplay } from "swiper/modules";
-import { X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X, ExternalLink } from "lucide-react";
 
 export default function Projects() {
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [active, setActive] = useState(null);
+
+  // disable scroll when modal opens
+  useEffect(() => {
+    document.body.style.overflow = active ? "hidden" : "auto";
+  }, [active]);
 
   return (
     <section
       id="projects"
       className="
-        py-16 px-4
-        bg-gradient-to-br from-purple-50 to-purple-100
-        dark:from-gray-900 dark:to-gray-800
-        relative"
+        relative py-28 px-6 overflow-hidden w-full
+        bg-[#02040a] text-white dark:bg-[#02040a]
+      "
     >
-      <h2
+      {/* 🌊 Hologram Wave Background */}
+      <motion.div
+        initial={{ opacity: 0.25 }}
+        animate={{
+          y: [0, -40, 0],
+          opacity: [0.15, 0.3, 0.15],
+        }}
+        transition={{ duration: 9, repeat: Infinity }}
         className="
-          text-3xl sm:text-4xl font-extrabold text-purple-800
-          dark:text-yellow-300 mb-12 text-center tracking-tight
+          absolute top-0 left-0 w-full h-[140%]
+          pointer-events-none
+          bg-[linear-gradient(to_bottom,rgba(0,255,255,0.15),transparent)]
+          blur-[60px]
         "
-        data-aos="fade-down"
+      />
+
+      {/* 🔷 Cyber Grid */}
+      <motion.div
+        animate={{ opacity: [0.08, 0.2, 0.08] }}
+        transition={{ duration: 6, repeat: Infinity }}
+        className="
+          absolute inset-0 pointer-events-none
+          bg-[linear-gradient(#0affd8_1px,transparent_1px),
+              linear-gradient(90deg,#0affd8_1px,transparent_1px)]
+          bg-[size:42px_42px]
+          opacity-25
+        "
+      />
+
+      {/* 🟣 Floating Neon Particles */}
+      {[...Array(30)].map((_, i) => (
+        <motion.span
+          key={i}
+          className="absolute rounded-full bg-[#0affd8]"
+          style={{
+            width: Math.random() * 3 + 2,
+            height: Math.random() * 3 + 2,
+            top: `${Math.random() * 100}%`,
+            left: `${Math.random() * 100}%`,
+          }}
+          animate={{
+            opacity: [0.1, 0.6, 0.1],
+            y: [-6, 4, -6],
+          }}
+          transition={{
+            repeat: Infinity,
+            duration: 3 + Math.random() * 3,
+          }}
+        />
+      ))}
+
+      {/* 🔥 Section Title */}
+      <motion.h2
+        initial={{ opacity: 0, y: 35 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="
+        relative z-10 text-center text-5xl font-extrabold mb-16
+        bg-gradient-to-r from-[#0affd8] to-[#6a5cff]
+        bg-clip-text text-transparent select-none
+      "
       >
         My Projects
-      </h2>
+      </motion.h2>
 
-      <Swiper
-        slidesPerView={1}
-        spaceBetween={20}
-        pagination={{ clickable: true }}
-        modules={[Pagination, Autoplay]}
-        autoplay={{ delay: 3000, disableOnInteraction: false }}
-        breakpoints={{
-          640: { slidesPerView: 1 },
-          768: { slidesPerView: 2 },
-          1024: { slidesPerView: 3 },
-        }}
-        className="max-w-6xl mx-auto"
-      >
-        {projects.map((proj, index) => (
-          <SwiperSlide key={index}>
-            <div
-              className="
-                relative bg-white dark:bg-gray-800 rounded-xl shadow-lg
-                border border-purple-200 dark:border-gray-600 overflow-hidden
-                group hover:shadow-2xl transition cursor-pointer
-              "
-              data-aos="zoom-in-up"
-              onClick={() => setSelectedProject(proj)}
-            >
-              <img
-                src={proj.image}
-                alt={proj.title}
-                className="
-                  w-full h-48 sm:h-56 md:h-60 object-cover
-                  group-hover:scale-105 transition duration-500
-                "
-              />
-              <div className="p-4">
-                <h3
-                  className="
-                  text-lg sm:text-xl font-semibold
-                  text-purple-800 dark:text-yellow-200 mb-1
-                  group-hover:text-pink-600 transition
-                "
-                >
-                  {proj.title}
-                </h3>
-                <p
-                  className="
-                  text-gray-600 dark:text-gray-300 text-xs sm:text-sm mb-2
-                  line-clamp-3
-                "
-                >
-                  {proj.desc}
-                </p>
-                <p
-                  className="
-                  text-xs text-purple-700 dark:text-yellow-300
-                  font-semibold mb-2
-                "
-                >
-                  {proj.tech}
-                </p>
-              </div>
-              {/* hover overlay */}
-              <div
-                className="
-                absolute inset-0 bg-purple-800 bg-opacity-70
-                dark:bg-gray-900/80 opacity-0 group-hover:opacity-100
-                text-white flex items-center justify-center text-center
-                p-4 transition
-              "
-              >
-                <span className="text-xs sm:text-sm">
-                  Click to view details
-                </span>
-              </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-
-      {/* modal */}
-      {selectedProject && (
-        <div
-          className="
-          fixed inset-0 bg-black bg-opacity-60
-          flex justify-center items-center z-50 p-4
+      {/* GRID LIST */}
+      <div
+        className="
+          relative z-10
+          columns-1 sm:columns-2 lg:columns-3 gap-6
+          max-w-6xl mx-auto space-y-6
         "
-        >
-          <div
+      >
+        {projects.map((proj, idx) => (
+          <motion.div
+            key={idx}
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: idx * 0.05, duration: 0.55 }}
+            viewport={{ once: true }}
+            whileHover={{ scale: 1.03 }}
             className="
-            bg-white dark:bg-gray-800 rounded-xl shadow-xl
-            p-4 sm:p-6 relative max-w-lg w-full animate-fadeIn
-          "
+              break-inside-avoid rounded-2xl overflow-hidden cursor-pointer
+              backdrop-blur-xl border border-[#0affd8]/10 bg-white/5 shadow-lg
+              hover:shadow-[0_0_25px_rgba(0,255,255,0.35)]
+              hover:border-[#0affd8]
+              dark:bg-white/5 dark:border-[#0affd8]/20
+            "
+            onClick={() => setActive(proj)}
           >
-            <button
-              onClick={() => setSelectedProject(null)}
-              className="
-                absolute top-2 right-2 sm:top-3 sm:right-3
-                text-purple-700 dark:text-yellow-300 hover:text-purple-900
-              "
-            >
-              <X size={20} />
-            </button>
-            <img
-              src={selectedProject.image}
-              alt={selectedProject.title}
-              className="
-                rounded mb-3 sm:mb-4 w-full object-cover
-                max-h-60 sm:max-h-72
-              "
+            <motion.img
+              src={proj.image}
+              alt={proj.title}
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+              className="w-full h-48 object-cover"
             />
-            <h3
-              className="
-              text-xl sm:text-2xl font-bold
-              text-purple-800 dark:text-yellow-200 mb-2
+            <div className="p-5">
+              <h3 className="text-lg font-extrabold text-[#0affd8]">
+                {proj.title}
+              </h3>
+              <p className="text-sm opacity-80 mt-2 leading-relaxed text-gray-300">
+                {proj.desc}
+              </p>
+              <span
+                className="
+                  inline-block mt-3 px-3 py-1 text-[11px] font-semibold rounded-full
+                  bg-[#0affd8]/20 text-[#0affd8]
+                  border border-[#0affd8]/40
+                "
+              >
+                {proj.tech}
+              </span>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* MODAL */}
+      <AnimatePresence>
+        {active && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="
+              fixed inset-0 bg-black/80 backdrop-blur-xl
+              z-[999] flex justify-center items-center p-6
             "
-            >
-              {selectedProject.title}
-            </h3>
-            <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-2">
-              {selectedProject.desc}
-            </p>
-            <p
+            onClick={() => setActive(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.85, opacity: 0, y: 30 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.85, opacity: 0, y: 40 }}
+              transition={{ duration: 0.25 }}
+              onClick={(e) => e.stopPropagation()}
               className="
-              text-xs text-purple-700 dark:text-yellow-300
-              font-semibold mb-4
-            "
-            >
-              {selectedProject.tech}
-            </p>
-            <a
-              href={selectedProject.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="
-                bg-purple-700 text-yellow-300 px-4 py-2 rounded-full
-                font-bold hover:bg-purple-800 transition inline-block
+                relative bg-[#02040a] text-white
+                rounded-2xl p-6 max-w-xl w-full max-h-[85vh] overflow-y-auto no-scrollbar
+                shadow-[0_0_40px_rgba(0,255,255,0.45)]
+                border border-[#0affd8]/40
               "
             >
-              View Code
-            </a>
-          </div>
-        </div>
-      )}
+              <button
+                onClick={() => setActive(null)}
+                className="absolute top-4 right-4 text-gray-400 hover:text-red-400"
+              >
+                <X size={24} />
+              </button>
 
-      {/* decorative blobs */}
-      <div
-        className="
-        absolute top-0 left-0 w-36 sm:w-48 h-36 sm:h-48
-        bg-yellow-300 rounded-full opacity-20 blur-3xl animate-pulse
-      "
-      ></div>
-      <div
-        className="
-        absolute bottom-0 right-0 w-52 sm:w-72 h-52 sm:h-72
-        bg-pink-400 rounded-full opacity-20 blur-3xl animate-pulse
-        delay-1000
-      "
-      ></div>
+              <img
+                src={active.image}
+                className="rounded-xl mb-4 object-cover w-full max-h-64"
+              />
+              <h3 className="text-3xl font-extrabold bg-gradient-to-r from-[#0affd8] to-[#6a5cff] bg-clip-text text-transparent">
+                {active.title}
+              </h3>
+              <p className="text-sm opacity-80 mt-3">{active.desc}</p>
+              <p className="mt-2 text-xs font-semibold text-[#0affd8]">
+                {active.tech}
+              </p>
+              <a
+                href={active.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+                  flex items-center justify-center gap-2 mt-6
+                  bg-[#0affd8] text-[#02040a]
+                  px-6 py-3 rounded-full font-bold hover:scale-105 transition shadow-md
+                "
+              >
+                View Code <ExternalLink size={16} />
+              </a>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

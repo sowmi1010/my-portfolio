@@ -1,114 +1,124 @@
-import { useState } from "react";
+// src/components/Header.jsx
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import DarkModeToggle from "./DarkModeToggle";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
-import { motion, AnimatePresence } from "framer-motion";
 
 export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  const toggleMenu = () => setMenuOpen(!menuOpen);
+  useEffect(() => {
+    const handler = () => setScrolled(window.scrollY > 60);
+    window.addEventListener("scroll", handler);
+    return () => window.removeEventListener("scroll", handler);
+  }, []);
 
   return (
-    <header
-      className="
-        fixed top-0 w-full z-50
-        bg-gradient-to-r from-purple-900/60 to-purple-700/60
-        dark:bg-gradient-to-r dark:from-gray-900/60 dark:to-gray-800/60
-        backdrop-blur-lg shadow-md border-b border-purple-300/30 dark:border-gray-700/40
-        transition-all duration-500
-      "
-    >
-      <div className="max-w-7xl mx-auto flex justify-between items-center px-4 md:px-6 py-4">
-        <h1
-          className="
-            text-2xl md:text-3xl font-extrabold tracking-widest
-            bg-gradient-to-r from-yellow-300 via-white to-yellow-400
-            bg-clip-text text-transparent
-            hover:scale-105 transition-transform duration-300
-            dark:bg-gradient-to-r dark:from-yellow-400 dark:via-yellow-300 dark:to-yellow-200
-          "
-        >
-          Sowmiya
-        </h1>
-        <div className="flex items-center gap-4">
-          {/* hamburger toggle */}
-          <button
-            className="md:hidden text-yellow-300"
-            onClick={toggleMenu}
+    <header className="fixed top-0 left-0 w-full z-[999] pointer-events-none">
+      {/* NAV MAIN BAR */}
+      <motion.div
+        initial={{ y: -60, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.45 }}
+        className={`
+          pointer-events-auto transition-all duration-500
+          backdrop-blur-xl border-b 
+          ${
+            scrolled
+              ? "bg-black/60 dark:bg-black/60 border-white/10 shadow-[0_4px_25px_rgba(0,0,0,0.45)]"
+              : "bg-transparent border-transparent"
+          }
+        `}
+      >
+        <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+          {/* LOGO */}
+          <motion.h1
+            whileHover={{ scale: 1.05 }}
+            className="
+              font-black text-[28px] select-none cursor-pointer tracking-tighter
+              bg-gradient-to-r from-purple-400 to-pink-300
+              dark:from-yellow-300 dark:to-yellow-500
+              bg-clip-text text-transparent
+            "
           >
-            {menuOpen ? (
-              <XMarkIcon className="w-8 h-8" />
-            ) : (
-              <Bars3Icon className="w-8 h-8" />
-            )}
-          </button>
+            Sowmiya
+          </motion.h1>
 
-          {/* normal menu for desktop */}
-          <nav className="hidden md:block">
-            <ul className="flex gap-6 text-base font-semibold text-white dark:text-yellow-200">
-              {["About", "Skills", "Experience", "Projects"].map((item) => (
-                <li key={item}>
-                  <a
-                    href={`#${item.toLowerCase()}`}
-                    className="
-                      relative hover:text-yellow-300 dark:hover:text-yellow-400 transition
-                      before:absolute before:-bottom-1 before:left-0
-                      before:w-0 before:h-0.5 before:bg-yellow-400
-                      before:transition-all before:duration-300
-                      hover:before:w-full
-                    "
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
-              <li>
-                <a
-                  href="#contact"
-                  className="
-                    bg-yellow-400 text-purple-900 px-4 py-2 rounded
-                    hover:bg-yellow-300 hover:scale-105
-                    active:scale-95 transition-transform duration-300 shadow
-                    dark:bg-yellow-300 dark:hover:bg-yellow-400 dark:text-gray-900
-                  "
-                >
-                  Contact
+          {/* DESKTOP NAV */}
+          <ul className="
+            hidden md:flex gap-10 items-center text-base font-medium
+            text-white dark:text-yellow-200
+          ">
+            {["About", "Skills", "Experience", "Projects", "Contact"].map((item) => (
+              <motion.li whileHover={{ scale: 1.05 }} key={item} className="relative group">
+                <a href={`#${item.toLowerCase()}`} className="pb-[3px]">
+                  {item}
                 </a>
-              </li>
-            </ul>
-          </nav>
-          <DarkModeToggle />
-        </div>
-      </div>
+                <span
+                  className="
+                    absolute left-0 -bottom-[3px] h-[2px] w-0 
+                    bg-gradient-to-r from-purple-500 to-pink-500
+                    dark:from-yellow-300 dark:to-yellow-500
+                    transition-all duration-300 group-hover:w-full
+                  "
+                />
+              </motion.li>
+            ))}
+            <div className="ml-3">
+              <DarkModeToggle />
+            </div>
+          </ul>
 
-      {/* AnimatePresence to handle slide-in mobile menu */}
+          {/* MOBILE HAMBURGER */}
+          <button
+            onClick={() => setOpen(true)}
+            className="md:hidden text-white dark:text-yellow-200 pointer-events-auto"
+          >
+            <Bars3Icon className="w-8 h-8" />
+          </button>
+        </div>
+      </motion.div>
+
+      {/* MOBILE MENU */}
       <AnimatePresence>
-        {menuOpen && (
-          <motion.nav
+        {open && (
+          <motion.div
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
-            transition={{ type: "spring", stiffness: 80 }}
+            transition={{ type: "spring", stiffness: 55 }}
             className="
-              md:hidden fixed top-16 right-0 w-2/3 h-screen
-              bg-purple-900/80 dark:bg-gray-900/80 backdrop-blur-xl p-6
-              flex flex-col gap-4 text-base font-semibold text-yellow-100 shadow-2xl
+              pointer-events-auto fixed top-0 right-0 w-[70%] h-screen
+              bg-black/80 backdrop-blur-2xl border-l border-white/10
+              flex flex-col gap-6 p-8 text-white dark:text-yellow-200
             "
           >
-            {["About", "Skills", "Experience", "Projects", "Contact"].map((item) => (
-              <a
-                key={item}
-                onClick={() => setMenuOpen(false)}
-                href={`#${item.toLowerCase()}`}
-                className="
-                  border-b border-yellow-300/20 pb-2
-                  hover:text-yellow-300 transition
-                "
-              >
-                {item}
-              </a>
-            ))}
-          </motion.nav>
+            <button
+              className="self-end"
+              onClick={() => setOpen(false)}
+            >
+              <XMarkIcon className="w-9 h-9 text-white dark:text-yellow-300" />
+            </button>
+
+            <div className="flex flex-col gap-6 text-lg">
+              {["About", "Skills", "Experience", "Projects", "Contact"].map((item) => (
+                <motion.a
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  onClick={() => setOpen(false)}
+                  whileHover={{ scale: 1.05 }}
+                  className="hover:text-yellow-300"
+                >
+                  {item}
+                </motion.a>
+              ))}
+            </div>
+
+            <div className="mt-auto">
+              <DarkModeToggle />
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </header>

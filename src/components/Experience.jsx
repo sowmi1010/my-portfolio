@@ -1,171 +1,143 @@
+// src/components/Experience.jsx
 import experienceData from "../data/experience.json";
-import { Code, Database, GraduationCap, Users, Download } from "lucide-react";
+import { motion } from "framer-motion";
+import { Code, Database, GraduationCap, Users } from "lucide-react";
+
+const iconMap = { Users, GraduationCap, Code, Database };
 
 export default function Experience() {
-  const iconMap = {
-    Users,
-    GraduationCap,
-    Code,
-    Database,
-  };
-
-  function highlightKeywords(text) {
-    const keywords = [
-      "MERN stack",
-      "Java",
-      "Python",
-      "Flask",
-      "SQL",
-      "Spring Boot",
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "C++",
-      "C",
-      "React.js",
-      "Tailwind CSS",
-      "Phoenix Framework",
-      "LiveView",
-      "production data",
-    ];
-    const pattern = keywords
-      .map((k) => k.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
-      .join("|");
-    const parts = text.split(new RegExp(`(${pattern})`, "gi"));
-
-    return parts.map((part, idx) =>
-      keywords.includes(part) ? (
-        <span key={idx} className="font-bold text-purple-700 dark:text-yellow-300">
-          {part}
-        </span>
-      ) : (
-        part
-      )
-    );
-  }
-
   return (
     <section
       id="experience"
       className="
-        py-16 px-4
-        bg-gradient-to-br from-purple-50 to-purple-100
-        dark:from-gray-900 dark:to-gray-800
-        relative
+        relative py-28 px-6
+        bg-gradient-to-b from-white via-[#f4e8ff] to-white
+        dark:from-[#050009] dark:via-[#0c0017] dark:to-[#000]
+        overflow-hidden
       "
     >
-      <div className="max-w-5xl mx-auto">
-        <h2
+      {/* Neon Particles */}
+      {[...Array(18)].map((_, i) => (
+        <motion.span
+          key={i}
+          animate={{ y: [0, -50, 0], opacity: [0, 0.8, 0] }}
+          transition={{ duration: 3 + Math.random() * 3, repeat: Infinity }}
           className="
-            text-3xl sm:text-4xl font-extrabold
-            text-purple-800 dark:text-yellow-300 mb-12
-            text-center tracking-tight
+            pointer-events-none absolute rounded-full blur-[6px]
+            bg-purple-500/40 dark:bg-yellow-300/30
           "
-          data-aos="fade-down"
-        >
-          Experience
-        </h2>
+          style={{
+            width: 4 + Math.random() * 6,
+            height: 4 + Math.random() * 6,
+            left: `${Math.random() * 100}%`,
+            bottom: `${Math.random() * 60}px`,
+          }}
+        />
+      ))}
 
-        <div className="relative">
-          {/* timeline vertical line */}
-          <div className="
-            hidden sm:block
-            absolute left-5 top-0 bottom-0 w-1
-            bg-gradient-to-b from-yellow-400 via-pink-400 to-purple-500
-            rounded-full animate-pulse
-          "></div>
+      {/* Soft Neon Gradient Top & Bottom */}
+      <motion.div
+        animate={{ opacity: [0.15, 0.3, 0.15] }}
+        transition={{ repeat: Infinity, duration: 10 }}
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[80vw] h-[35vh] bg-purple-600/25 dark:bg-yellow-300/15 blur-[140px]"
+      />
+      <motion.div
+        animate={{ opacity: [0.1, 0.25, 0.1] }}
+        transition={{ repeat: Infinity, duration: 12 }}
+        className="absolute bottom-0 right-1/2 translate-x-1/2 w-[75vw] h-[30vh] bg-pink-600/25 dark:bg-purple-500/15 blur-[160px]"
+      />
 
-          <div className="space-y-10">
-            {experienceData.map((exp, idx) => {
-              const IconComponent = iconMap[exp.icon] || Users;
+      {/* Title */}
+      <motion.h2
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        className="
+          relative z-10 text-center mb-20
+          font-extrabold text-5xl
+          bg-gradient-to-r from-purple-700 to-pink-500 bg-clip-text text-transparent
+          dark:from-yellow-300 dark:to-yellow-500
+        "
+      >
+        Experience
+      </motion.h2>
 
-              return (
-                <div
-                  key={idx}
-                  className="relative pl-14 sm:pl-16 group"
-                  data-aos="fade-up"
-                  data-aos-delay={idx * 150}
-                >
-                  {/* timeline circle icon */}
-                  <div className="
-                    absolute left-2 sm:left-0 top-2
-                    w-8 h-8 bg-gradient-to-br from-purple-600 to-pink-600
-                    rounded-full border-4 border-white
+      {/* Timeline Container */}
+      <div className="relative max-w-5xl mx-auto">
+
+        {/* Neon vertical line */}
+        <motion.div
+          initial={{ height: 0 }}
+          whileInView={{ height: "100%" }}
+          transition={{ duration: 1.2 }}
+          className="
+            absolute left-6 top-0 md:left-1/2 
+            transform md:-translate-x-1/2
+            w-[4px] rounded-full
+            bg-gradient-to-b from-purple-500 via-pink-400 to-yellow-300
+            dark:from-yellow-400 dark:via-purple-500 dark:to-pink-400
+            shadow-[0_0_25px_rgba(255,255,255,0.3)]
+          "
+        />
+
+        {/* Entries */}
+        <div className="relative z-10 space-y-20">
+          {experienceData.map((exp, i) => {
+            const Icon = iconMap[exp.icon] || Users;
+
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: i % 2 === 0 ? -60 : 60 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6, delay: i * 0.08 }}
+                className={`
+                  relative flex flex-col w-full md:w-[48%]
+                  ${i % 2 === 0 ? "md:mr-auto" : "md:ml-auto"}
+                `}
+              >
+                {/* Icon Bubble */}
+                <motion.div
+                  whileHover={{ scale: 1.15 }}
+                  className="
+                    absolute -left-12 md:left-[-2.8rem] top-2
+                    w-12 h-12 rounded-full
                     flex items-center justify-center
-                    shadow-md group-hover:scale-110 transition
-                  ">
-                    <IconComponent className="w-4 h-4 text-white" />
-                  </div>
+                    bg-gradient-to-br from-purple-600 to-pink-600
+                    dark:from-yellow-400 dark:to-yellow-200
+                    border-4 border-white/30 dark:border-black/50
+                    shadow-[0_0_20px_rgba(255,255,255,0.25)]
+                  "
+                >
+                  <Icon className="text-white dark:text-black w-5 h-5" />
+                </motion.div>
 
-                  {/* timeline card */}
-                  <div className="
-                    bg-gradient-to-br from-white to-purple-50
-                    dark:from-gray-800 dark:to-gray-700
-                    rounded-xl shadow-lg p-4 sm:p-6
-                    border border-purple-200 dark:border-gray-600
-                    hover:shadow-2xl hover:scale-[1.02]
-                    transition transform duration-300
-                  ">
-                    <h3 className="
-                      text-lg sm:text-xl font-semibold
-                      text-purple-800 dark:text-yellow-200 mb-1
-                    ">
-                      {exp.title}
-                    </h3>
-                    <p className="
-                      text-xs sm:text-sm text-gray-600
-                      dark:text-gray-300 italic mb-3
-                    ">
-                      {exp.company} | {exp.time}
-                    </p>
-                    <ul className="
-                      list-disc list-inside
-                      text-xs sm:text-sm
-                      text-gray-700 dark:text-yellow-100
-                      space-y-1
-                    ">
-                      {exp.points.map((point, i) => (
-                        <li key={i}>{highlightKeywords(point)}</li>
-                      ))}
-                    </ul>
-                  </div>
+                {/* Glass Card */}
+                <div
+                  className="
+                    rounded-xl p-6 backdrop-blur-xl
+                    bg-white/50 border border-white/25 shadow-lg
+                    hover:shadow-purple-300/30 hover:-translate-y-1
+                    transition-all
+                    dark:bg-white/10 dark:border-purple-700/30 dark:hover:border-yellow-300/50
+                  "
+                >
+                  <h3 className="text-xl font-semibold text-purple-900 dark:text-yellow-300 mb-1">
+                    {exp.title}
+                  </h3>
+                  <p className="italic text-gray-700 dark:text-gray-300 mb-3 text-sm">
+                    {exp.company} • {exp.time}
+                  </p>
+                  <ul className="text-sm text-purple-900 dark:text-yellow-100 space-y-2 leading-relaxed">
+                    {exp.points.map((p, j) => <li key={j}>{p}</li>)}
+                  </ul>
                 </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* resume button */}
-        <div className="flex justify-center mt-12" data-aos="fade-up">
-          <a
-            href="/resume.pdf"
-            download
-            className="
-              inline-flex items-center gap-2
-              bg-gradient-to-br from-purple-700 to-pink-600
-              text-yellow-300 px-5 py-3 rounded-full font-bold
-              hover:bg-purple-800 hover:scale-105 transition shadow
-            "
-          >
-            <Download className="w-5 h-5" />
-            Download Resume
-          </a>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
-
-      {/* decorative blobs */}
-      <div className="
-        absolute top-0 left-0
-        w-40 sm:w-60 h-40 sm:h-60
-        bg-yellow-300 opacity-20 rounded-full
-        blur-3xl animate-pulse
-      "></div>
-      <div className="
-        absolute bottom-0 right-0
-        w-56 sm:w-80 h-56 sm:h-80
-        bg-pink-400 opacity-20 rounded-full
-        blur-3xl animate-pulse delay-1000
-      "></div>
     </section>
   );
 }
