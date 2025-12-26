@@ -31,13 +31,8 @@ cd portfolio
 npm install
 npm run dev
 
-🧑‍💻 About Me
 
-Sowmiya Thangadurai
-MERN Stack Developer • UI/UX Designer • Coding Mentor
-📧 tamilsowmi1010@gmail.com
 
-🔗 LinkedIn: https://www.linkedin.com/in/sowmiya-thangadurai-206163233
 
 <img width="1795" height="861" alt="Screenshot 2025-12-26 175007" src="https://github.com/user-attachments/assets/5d468a34-5e66-432b-81c2-b733db28510e" />
 
@@ -55,3 +50,12 @@ MERN Stack Developer • UI/UX Designer • Coding Mentor
 
 <img width="1430" height="871" alt="Screenshot 2025-12-26 175200" src="https://github.com/user-attachments/assets/8a4384a9-1f78-4dc2-a66c-b627fc5ac3de" />
 
+
+
+🧑‍💻 About Me
+
+Sowmiya Thangadurai
+MERN Stack Developer • UI/UX Designer • Coding Mentor
+📧 tamilsowmi1010@gmail.com
+
+🔗 LinkedIn: https://www.linkedin.com/in/sowmiya-thangadurai-206163233
