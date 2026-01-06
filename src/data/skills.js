@@ -12,6 +12,8 @@ import mongodb from "../assets/mongodb.webp";
 import mysql from "../assets/mysql.png";
 import elixir from "../assets/elixir.png";
 import phoenix from "../assets/phoenix.png";
+import dart from "../assets/dart.png";
+import flutter from "../assets/flutter.png";
 
 const skills = [
   // ---------------- FRONTEND ----------------
@@ -100,7 +102,7 @@ const skills = [
     description: "Schema design using Mongoose, CRUD ops, aggregation pipelines, REST API integration, cloud Atlas hosting."
   },
 
-  
+
   {
     name: "MySQL",
     image: mysql,
@@ -120,24 +122,39 @@ const skills = [
     description: "Version control, project commits, branching, GitHub push, pull request basics, repo hosting & docs."
   },
   {
-  name: "Elixir",
-  image: elixir,
-  category: "Backend",
-  percent: 65,
-  tags: ["Elixir", "Phoenix", "LiveView"],
-  description: "Functional backend programming, fault-tolerant & high-concurrency apps on BEAM VM."
-},
-{
-  name: "Phoenix Framework",
-  image: phoenix,
-  category: "Backend",
-  percent: 62,
-  tags: ["Phoenix", "LiveView", "REST"],
-  description: "Phoenix MVC, LiveView interactive UI, scalable real-time backends for modern web apps."
-},
+    name: "Elixir",
+    image: elixir,
+    category: "Backend",
+    percent: 65,
+    tags: ["Elixir", "Phoenix", "LiveView"],
+    description: "Functional backend programming, fault-tolerant & high-concurrency apps on BEAM VM."
+  },
+  {
+    name: "Phoenix Framework",
+    image: phoenix,
+    category: "Backend",
+    percent: 62,
+    tags: ["Phoenix", "LiveView", "REST"],
+    description: "Phoenix MVC, LiveView interactive UI, scalable real-time backends for modern web apps."
+  },
 
-
-  
+  // ---------------- MOBILE ----------------
+  {
+    name: "Dart",
+    image: dart,
+    category: "Mobile",
+    percent: 80,
+    tags: ["Dart", "Flutter"],
+    description: "Strong Dart fundamentals, OOP concepts, async programming, futures & streams for Flutter apps."
+  },
+  {
+    name: "Flutter",
+    image: flutter,
+    category: "Mobile",
+    percent: 85,
+    tags: ["Flutter", "Dart", "Mobile UI"],
+    description: "Cross-platform app development, widgets, state management, animations, responsive UI & Firebase-ready apps."
+  },
 ];
 
 export default skills;

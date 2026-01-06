@@ -4,6 +4,8 @@ import project3 from "../assets/project3.png";
 import project4 from "../assets/project4.png";
 import project5 from "../assets/project5.png";
 import project6 from "../assets/project6.png";
+import project7 from "../assets/project7.png"
+import project8 from "../assets/project8.png"
 
 const projects = [
   {
@@ -23,7 +25,7 @@ const projects = [
   {
     title: "My React Portfolio",
     desc: "Responsive React portfolio website with dark mode, showcasing my skills, projects, and experience in a clean, modern design.",
-    link: "https://github.com/sowmi1010/My-React-Portfolio",
+    link: "https://github.com/sowmi1010/my-portfolio",
     tech: "React, Tailwind",
     image: project3
   },
@@ -44,9 +46,23 @@ const projects = [
   {
     title: "MyDocs Web App",
     desc: "A simple and secure document management web app that allows users to upload, organize, and access files anytime, anywhere.",
-    link: "https://github.com/sowmi1010/Documentation.git",
+    link: "https://github.com/sowmi1010/Course",
     tech: "React, Tailwind, Node, Express, MongoDB",
     image: project6
+  },
+  {
+    title: "Interior Design",
+    desc: "A modern interior design portfolio showcasing residential and commercial projects with gallery views, enquiry forms, admin management, and responsive UI.",
+    link: "https://github.com/sowmi1010/sowron-interiors-fullstack",
+    tech: "React, Tailwind, Node, Express, MongoDB",
+    image: project7
+  },
+  {
+    title: "MERN E-Learning Platform",
+    desc: "A full-stack e-learning platform with course management, student enrollment, admin dashboard, authentication, progress tracking, and certificate generation.",
+    link: "https://github.com/sowmi1010/MEARN-ELEARN",
+    tech: "React, Tailwind, Node, Express, MongoDB",
+    image: project8
   }
 ];
 

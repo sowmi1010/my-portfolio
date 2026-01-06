@@ -77,7 +77,7 @@ export default function Projects() {
         transition={{ duration: 0.6 }}
         className="
         relative z-10 text-center text-5xl font-extrabold mb-16
-        bg-gradient-to-r from-[#0affd8] to-[#6a5cff]
+        bg-gradient-to-r from-purple-600 to-pink-200
         bg-clip-text text-transparent select-none
       "
       >

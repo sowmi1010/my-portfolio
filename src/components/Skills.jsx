@@ -86,7 +86,7 @@ export default function Skills() {
         transition={{ duration: 0.4 }}
         className="relative z-10 flex justify-center gap-3 mb-12 flex-wrap"
       >
-        {["Frontend", "Backend", "Database", "Tools"].map((tab) => (
+        {["Frontend", "Backend", "Database", "Mobile","Tools"].map((tab) => (
           <motion.button
             key={tab}
             whileTap={{ scale: 0.9 }}
