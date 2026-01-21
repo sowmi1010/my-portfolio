@@ -6,6 +6,8 @@ import project5 from "../assets/project5.png";
 import project6 from "../assets/project6.png";
 import project7 from "../assets/project7.png"
 import project8 from "../assets/project8.png"
+import project9 from "../assets/project9.png"
+
 
 const projects = [
   {
@@ -63,7 +65,15 @@ const projects = [
     link: "https://github.com/sowmi1010/MEARN-ELEARN",
     tech: "React, Tailwind, Node, Express, MongoDB",
     image: project8
+  },
+  {
+    title: "InstaClone – Django Social Media App",
+    desc: "A full-stack Instagram-style social media platform with image posts, likes, comments, follow system, city-based feed filtering, mood tagging, and premium dark neon UI.",
+    link: "https://github.com/sowmi1010/instaclone-django-react",
+    tech: "Django, Django REST Framework, JWT, SQLite, React",
+    image: project9
   }
+
 ];
 
 export default projects;
