@@ -7,22 +7,32 @@ import project6 from "../assets/project6.png";
 import project7 from "../assets/project7.png"
 import project8 from "../assets/project8.png"
 import project9 from "../assets/project9.png"
+import project10 from "../assets/project10.jpeg"
+import project11 from "../assets/project11.png"
+import project12 from "../assets/project12.png"
 
 
 const projects = [
+   {
+    title: "Quest Technology MERN Project",
+    desc: "A MERN stack project for managing quests/tasks with progress tracking, status updates, and user-centric workflow dashboards.",
+    link: "https://github.com/sowmi1010/quest_technology",
+    tech: "React, Node, Express, MongoDB",
+    image: project12
+  },
+   {
+    title: "Interior Design",
+    desc: "A modern interior design portfolio showcasing residential and commercial projects with gallery views, enquiry forms, admin management, and responsive UI.",
+    link: "https://github.com/sowmi1010/sowron-interiors-fullstack",
+    tech: "React, Tailwind, Node, Express, MongoDB",
+    image: project7
+  },
   {
     title: "My-Photo-Gallery-MERN-Stack-App",
     desc: "A Google Photos-style full-stack application to upload, view, favorite, delete, and download images with responsive masonry layout and REST API.",
     link: "https://github.com/sowmi1010/My-Photo-Gallery-MERN-Stack-App",
     tech: "React, Tailwind, Express, MongoDB, Node",
     image: project2
-  },
-  {
-    title: "MERN Crud-Application",
-    desc: "A full-stack CRUD app with user-friendly search, edit, delete, and add new users using React, Express, and MongoDB with Tailwind styling.",
-    link: "https://github.com/sowmi1010/React-Node.js-MongoDB-CRUD-Application",
-    tech: "React, Tailwind, Node, MongoDB",
-    image: project1
   },
   {
     title: "My React Portfolio",
@@ -72,7 +82,22 @@ const projects = [
     link: "https://github.com/sowmi1010/instaclone-django-react",
     tech: "Django, Django REST Framework, JWT, SQLite, React",
     image: project9
-  }
+  },
+  {
+    title: "Smart Attendance App",
+    desc: "A Flutter app to manage attendance records, mark daily status, and track present/absent analytics in a simple UI.",
+    link: "https://github.com/sowmi1010/smart_attendance_app",
+    tech: "Flutter, Dart",
+    image: project10
+  },
+  {
+    title: "AI Expense Tracker",
+    desc: "A Flutter expense tracking app with AI-assisted spending insights, category analysis, and budget monitoring.",
+    link: "https://github.com/sowmi1010/ai_expense_scanner",
+    tech: "Flutter, Dart",
+    image: project11
+  },
+ 
 
 ];
 

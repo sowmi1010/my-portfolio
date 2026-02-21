@@ -15,7 +15,7 @@
     "@heroicons/react": "^2.2.0",
     "@studio-freight/lenis": "^1.0.42",
     "@tailwindcss/line-clamp": "^0.4.4",
-    "framer-motion": "^12.23.26",
+    "framer-motion": "^12.34.3",
     "gsap": "^3.14.2",
     "lenis": "^1.3.16",
     "lucide-react": "^0.544.0",
