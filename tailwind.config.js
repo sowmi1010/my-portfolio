@@ -1,16 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: "class", // 👈 IMPORTANT
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}", // adjust to your paths
-  ],
+  darkMode: "class",
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
-            lightCard: "#ffffff",
+      lightCard: "#ffffff",
       darkCard: "#0f001a",
-
     },
   },
- plugins: [require("@tailwindcss/line-clamp")]
-}
+};

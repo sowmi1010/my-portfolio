@@ -1,101 +1,109 @@
-// src/components/Contact.jsx
+import { useState } from "react";
 import { Mail, Phone, Linkedin, MapPin, Github } from "lucide-react";
 import { motion } from "framer-motion";
 import MagneticBtn from "./interactive/MagneticBtn";
 
 export default function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [mailHint, setMailHint] = useState("");
+
   const items = [
     {
-      icon: <Mail className="w-5 h-5 text-yellow-300" />,
+      icon: <Mail className="h-5 w-5 text-yellow-300" />,
       text: "tamilsowmi1010@gmail.com",
       link: "mailto:tamilsowmi1010@gmail.com",
     },
     {
-      icon: <Phone className="w-5 h-5 text-yellow-300" />,
-      text: "7305312767",
+      icon: <Phone className="h-5 w-5 text-yellow-300" />,
+      text: "+91 73053 12767",
+      link: "tel:7305312767",
     },
     {
-      icon: <Linkedin className="w-5 h-5 text-yellow-300" />,
-      text: "linkedin.com/in/sowmiya-thangadurai",
+      icon: <Linkedin className="h-5 w-5 text-yellow-300" />,
+      text: "linkedin.com/in/sowmiya-thangadurai-206163233",
       link: "https://www.linkedin.com/in/sowmiya-thangadurai-206163233",
     },
     {
-      icon: <Github className="w-5 h-5 text-yellow-300" />,
+      icon: <Github className="h-5 w-5 text-yellow-300" />,
       text: "github.com/sowmi1010",
       link: "https://github.com/sowmi1010",
     },
     {
-      icon: <MapPin className="w-5 h-5 text-yellow-300" />,
-      text: "Avadi, Chennai - 600005",
+      icon: <MapPin className="h-5 w-5 text-yellow-300" />,
+      text: "Avadi, Tamil Nadu - 600054",
     },
   ];
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const subject = `Portfolio Inquiry from ${formData.name}`;
+    const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
+
+    window.location.href = `mailto:tamilsowmi1010@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setMailHint("Opening your email app with a prefilled draft message.");
+  };
 
   return (
     <section
       id="contact"
-      className="
-        relative py-28 px-6 overflow-hidden 
-        bg-gradient-to-b from-[#080012] via-[#0c0014] to-[#000000] text-white
-        dark:bg-gradient-to-b dark:from-[#000000] dark:via-[#05000c] dark:to-black
-      "
+      className="relative overflow-hidden bg-gradient-to-b from-[#080012] via-[#0c0014] to-black px-6 py-28 text-white dark:from-black dark:via-[#05000c] dark:to-black"
     >
-      {/* ✨ Circle Pulse BG Animation */}
-      {[...Array(3)].map((_, i) => (
-        <motion.div
-          key={i}
-          animate={{ scale: [1, 1.3, 1], opacity: [0.1, 0.35, 0.1] }}
-          transition={{ duration: 12 + i * 2, repeat: Infinity }}
-          className="absolute rounded-full blur-[150px] bg-purple-600/25 dark:bg-yellow-300/15"
-          style={{
-            width: 300 + i * 180,
-            height: 300 + i * 180,
-            top: i * 80,
-            right: i % 2 === 0 ? "-10%" : "auto",
-            left: i % 2 !== 0 ? "-15%" : "auto",
-          }}
-        />
-      ))}
+      <motion.div
+        animate={{ opacity: [0.06, 0.12, 0.06] }}
+        transition={{ duration: 12, repeat: Infinity }}
+        className="absolute right-[-10%] top-[15%] h-[340px] w-[340px] rounded-full bg-purple-600/20 blur-[120px] dark:bg-yellow-300/12"
+      />
 
-      {/* Divider */}
-      <hr className="border-white/10 mb-12 max-w-6xl mx-auto" />
+      <hr className="mx-auto mb-12 max-w-6xl border-white/10" />
 
-      {/* Title */}
       <motion.h2
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 35 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
-        className="
-          text-center text-5xl font-extrabold mb-14
-          bg-gradient-to-r from-yellow-300 via-white to-yellow-400
-          bg-clip-text text-transparent
-        "
+        transition={{ duration: 0.65 }}
+        className="mb-4 bg-gradient-to-r from-yellow-300 via-white to-yellow-400 bg-clip-text text-center text-5xl font-extrabold text-transparent"
       >
-        Let’s Connect
+        Let&apos;s Build Something Useful
       </motion.h2>
 
-      {/* Layout */}
-      <div className="relative z-10 max-w-5xl mx-auto grid gap-10 md:grid-cols-2">
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.55, delay: 0.1 }}
+        className="mx-auto mb-14 max-w-2xl text-center text-sm leading-relaxed text-gray-300 md:text-base"
+      >
+        Open to MERN developer roles, freelance projects, and collaboration opportunities.
+      </motion.p>
 
-        {/* Contact Card List */}
+      <div className="relative z-10 mx-auto grid max-w-5xl gap-10 md:grid-cols-2">
         <div className="flex flex-col gap-4 text-sm">
-          {items.map((item, i) => (
+          {items.map((item, index) => (
             <motion.div
-              key={i}
-              initial={{ opacity: 0, x: -30 }}
+              key={`${item.text}-${index}`}
+              initial={{ opacity: 0, x: -28 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.08, duration: 0.5 }}
-              whileHover={{ scale: 1.03 }}
-              className="
-                flex items-center gap-3 p-4 rounded-xl
-                backdrop-blur-xl bg-white/5 border border-white/10
-                hover:border-yellow-300/40 hover:shadow-[0_0_15px_rgba(255,255,0,0.2)]
-                transition-all
-              "
+              transition={{ delay: index * 0.07, duration: 0.45 }}
+              whileHover={{ scale: 1.02 }}
+              className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.06] p-4 transition-all hover:border-yellow-300/40 hover:shadow-[0_0_12px_rgba(255,255,0,0.15)]"
             >
               {item.icon}
               {item.link ? (
-                <a href={item.link} target="_blank" rel="noreferrer" className="hover:text-yellow-300 transition">
+                <a
+                  href={item.link}
+                  target={item.link.startsWith("http") ? "_blank" : undefined}
+                  rel={item.link.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="break-all transition hover:text-yellow-300"
+                >
                   {item.text}
                 </a>
               ) : (
@@ -105,33 +113,82 @@ export default function Contact() {
           ))}
         </div>
 
-        {/* Right Text + CTA */}
         <motion.div
-          initial={{ opacity: 0, x: 40 }}
+          initial={{ opacity: 0, x: 36 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7 }}
-          className="flex flex-col justify-center items-center md:items-start gap-4"
+          transition={{ duration: 0.65 }}
+          className="rounded-2xl border border-white/10 bg-white/[0.05] p-6"
         >
-          <h3 className="text-2xl font-bold text-yellow-200">
-            I’d love to hear from you!
-          </h3>
-          <p className="text-gray-300 text-sm md:text-base leading-relaxed max-w-md">
-            Whether you want MERN development, UI/UX help, or you're a student wanting guidance — feel free to say hi 👋
+          <h3 className="text-xl font-bold text-yellow-200">Send a Message</h3>
+          <p className="mt-2 text-sm text-gray-300">
+            Share your requirement and I&apos;ll get back within 24 hours.
           </p>
 
-          {/* CTA */}
-          <MagneticBtn className="
-            mt-3 inline-block px-10 py-3 text-lg font-bold rounded-full
-            bg-yellow-400 text-purple-900 hover:bg-yellow-300 shadow-xl
-            transition-all
-          ">
-            <a href="mailto:tamilsowmi1010@gmail.com">Get in Touch</a>
-          </MagneticBtn>
+          <form onSubmit={handleSubmit} className="mt-5 space-y-4">
+            <div>
+              <label htmlFor="name" className="mb-1 block text-xs font-semibold uppercase tracking-wide text-gray-300">
+                Name
+              </label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                className="w-full rounded-lg border border-white/20 bg-black/20 px-3 py-2 text-sm text-white outline-none transition focus:border-yellow-300"
+                placeholder="Your name"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="email" className="mb-1 block text-xs font-semibold uppercase tracking-wide text-gray-300">
+                Email
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                className="w-full rounded-lg border border-white/20 bg-black/20 px-3 py-2 text-sm text-white outline-none transition focus:border-yellow-300"
+                placeholder="you@example.com"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="message" className="mb-1 block text-xs font-semibold uppercase tracking-wide text-gray-300">
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                className="w-full resize-none rounded-lg border border-white/20 bg-black/20 px-3 py-2 text-sm text-white outline-none transition focus:border-yellow-300"
+                placeholder="Tell me about your project or role"
+              />
+            </div>
+
+            <MagneticBtn
+              type="submit"
+              className="inline-flex rounded-full bg-yellow-400 px-8 py-2.5 text-sm font-bold text-purple-900 shadow-xl transition-all hover:bg-yellow-300"
+            >
+              Send Message
+            </MagneticBtn>
+          </form>
+
+          <p className="mt-3 text-xs text-gray-400">This form opens your default email app with a prefilled message.</p>
+          {mailHint && (
+            <p aria-live="polite" className="mt-1 text-xs text-green-300">
+              {mailHint}
+            </p>
+          )}
         </motion.div>
       </div>
-
-      {/* Footer space */}
-      <div className="h-6" />
     </section>
   );
 }

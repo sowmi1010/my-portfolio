@@ -5,24 +5,52 @@ import { useState, useEffect } from "react";
 export default function DarkModeToggle() {
   const getInitialTheme = () => {
     const saved = localStorage.getItem("theme");
-    return saved ? saved === "dark" : true;
+    if (saved === "dark") return true;
+    if (saved === "light") return false;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
   };
 
+  const [manualPreference, setManualPreference] = useState(
+    () => localStorage.getItem("theme") !== null
+  );
   const [darkMode, setDarkMode] = useState(getInitialTheme);
 
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
     } else {
       document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
     }
-  }, [darkMode]);
+
+    if (manualPreference) {
+      localStorage.setItem("theme", darkMode ? "dark" : "light");
+    } else {
+      localStorage.removeItem("theme");
+    }
+  }, [darkMode, manualPreference]);
+
+  useEffect(() => {
+    if (manualPreference) {
+      return undefined;
+    }
+
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleSystemThemeChange = (event) => setDarkMode(event.matches);
+
+    mediaQuery.addEventListener("change", handleSystemThemeChange);
+    return () => {
+      mediaQuery.removeEventListener("change", handleSystemThemeChange);
+    };
+  }, [manualPreference]);
+
+  const handleThemeToggle = () => {
+    setManualPreference(true);
+    setDarkMode((prev) => !prev);
+  };
 
   return (
     <button
-      onClick={() => setDarkMode(!darkMode)}
+      onClick={handleThemeToggle}
       aria-label="Toggle Dark Mode"
       className="
         relative px-3 py-2 rounded-full flex items-center justify-center

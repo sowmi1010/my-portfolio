@@ -4,22 +4,21 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-<script>
-  // Immediately enable dark BEFORE UI renders (no white flash)
-  const saved = localStorage.getItem("theme");
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-  if (!saved) {
-    // first load – force dark as default
-    document.documentElement.classList.add("dark");
-    localStorage.setItem("theme", "dark");
-  } else if (saved === "dark") {
-    document.documentElement.classList.add("dark");
-  }
-</script>
-
-
+    <title>Sowmiya Thangadurai | Full Stack MERN Developer</title>
+    <meta
+      name="description"
+      content="MERN full-stack developer portfolio focused on dashboard systems, business websites, and scalable web applications."
+    />
+    <script>
+      (() => {
+        const savedTheme = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const shouldUseDark = savedTheme ? savedTheme === "dark" : prefersDark;
+        if (shouldUseDark) {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

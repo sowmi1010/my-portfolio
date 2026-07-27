@@ -1,47 +1,61 @@
 [
- {
-  "title": "Trainer/Developer Full Stack",
-  "company": "Quest Technologies, Avadi",
-  "time": "Jan 2025 – Present",
-  "points": [
-    "Conducted training on MERN stack, Java, Python, Flask, and SQL databases."
-  ],
-  "icon": "Users"
-},
   {
-    "title": "Full Stack Developer Trainer",
-    "company": "SRM Institute, Vandavasi",
-    "time": "Jun 2024 – Nov 2024",
+    "title": "Full Stack Developer (Technical Trainer)",
+    "company": "Quest Technologies, Avadi",
+    "time": "Jan 2025 - Present",
     "points": [
-      "Delivered workshops on Java, Spring Boot, HTML, CSS, JavaScript, C, and C++."
+      "Built and maintained internal dashboard and CRUD applications using React, Node.js, Express.js, and MongoDB.",
+      "Delivered structured MERN development programs focused on real project execution.",
+      "Guided learners through API integration, debugging workflows, and Git/GitHub-based collaboration.",
+      "Supported deployment and feature-iteration cycles for training and internal project builds."
+    ],
+    "icon": "Code"
+  },
+  {
+    "title": "Full Stack Developer (Technical Trainer)",
+    "company": "SRM Institute, Vandavasi",
+    "time": "Jun 2024 - Nov 2024",
+    "points": [
+      "Built project-ready full-stack starter applications and reusable learning modules.",
+      "Conducted full-stack workshops covering JavaScript, React, Node.js, Express, MongoDB, and backend fundamentals.",
+      "Designed project-based assignments for deployable mini-products.",
+      "Mentored student teams on authentication flows, REST API structure, and production debugging.",
+      "Provided code reviews and technical feedback to improve project quality and delivery confidence."
     ],
     "icon": "GraduationCap"
   },
   {
     "title": "Frontend Developer",
     "company": "SCRATCHBAC Pvt. Ltd, Singapore",
-    "time": "Dec 2022 – May 2024",
+    "time": "Dec 2022 - May 2024",
     "points": [
-      "Developed a social networking platform using Phoenix Framework and LiveView.",
-      "Built responsive user interfaces with Tailwind CSS."
+      "Developed responsive production UI modules with Tailwind CSS and component-based architecture.",
+      "Implemented social platform features and interactive flows using Phoenix Framework and LiveView.",
+      "Collaborated with design and backend teams to convert product requirements into shipped features.",
+      "Improved usability and cross-device consistency through iterative UI fixes and QA support."
     ],
     "icon": "Code"
   },
   {
     "title": "Frontend Developer",
     "company": "INodesys Technologies",
-    "time": "Feb 2022 – Nov 2022",
+    "time": "Feb 2022 - Nov 2022",
     "points": [
-      "Created static and dynamic websites with React.js and Tailwind CSS."
+      "Built static and dynamic web interfaces with React.js and reusable component patterns.",
+      "Implemented responsive layouts, forms, and client-requested feature updates for business websites.",
+      "Worked with designers and QA to resolve UI issues and improve release quality.",
+      "Maintained ongoing enhancements and support updates across multiple web projects."
     ],
     "icon": "Code"
   },
   {
     "title": "Data Analyst",
     "company": "Foxconn India Pvt Ltd",
-    "time": "Jan 2021 – Jan 2022",
+    "time": "Jan 2021 - Jan 2022",
     "points": [
-      "Analyzed production data for optimization and reporting."
+      "Analyzed production datasets to identify process bottlenecks and operational trends.",
+      "Prepared recurring reports and dashboards for team-level and management decision-making.",
+      "Performed data cleaning and validation to improve reporting reliability."
     ],
     "icon": "Database"
   }

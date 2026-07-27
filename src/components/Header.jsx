@@ -1,118 +1,144 @@
-// src/components/Header.jsx
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import DarkModeToggle from "./DarkModeToggle";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
+import DarkModeToggle from "./DarkModeToggle";
+import resumePdf from "../assets/resume.pdf";
+
+const primaryNavItems = [
+  { label: "Home", href: "#hero" },
+  { label: "Resume", href: resumePdf, external: true },
+  { label: "Projects", href: "#projects" },
+  { label: "Contact", href: "#contact" },
+];
+
+const secondaryNavItems = ["About", "Skills", "Experience"];
 
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", handler);
-    return () => window.removeEventListener("scroll", handler);
+    const onScroll = () => setScrolled(window.scrollY > 48);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-[999] pointer-events-none">
-      {/* NAV MAIN BAR */}
+    <header className="pointer-events-none fixed left-0 top-0 z-[999] w-full">
       <motion.div
         initial={{ y: -60, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.45 }}
-        className={`
-          pointer-events-auto transition-all duration-500
-          backdrop-blur-xl border-b 
-          ${
-            scrolled
-              ? "bg-black/60 dark:bg-black/60 border-white/10 shadow-[0_4px_25px_rgba(0,0,0,0.45)]"
-              : "bg-transparent border-transparent"
-          }
-        `}
+        transition={{ duration: 0.4 }}
+        className={`pointer-events-auto border-b backdrop-blur-xl transition-all duration-500 ${
+          scrolled
+            ? "border-white/10 bg-black/60 shadow-[0_4px_20px_rgba(0,0,0,0.4)]"
+            : "border-transparent bg-transparent"
+        }`}
       >
-        <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
-          {/* LOGO */}
-          <motion.h1
-            whileHover={{ scale: 1.05 }}
-            className="
-              font-black text-[28px] select-none cursor-pointer tracking-tighter
-              bg-gradient-to-r from-purple-400 to-pink-300
-              dark:from-yellow-300 dark:to-yellow-500
-              bg-clip-text text-transparent
-            "
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
+          <a
+            href="#hero"
+            className="bg-gradient-to-r from-purple-400 to-pink-300 bg-clip-text text-[28px] font-black tracking-tight text-transparent dark:from-yellow-300 dark:to-yellow-500"
           >
             Sowmiya
-          </motion.h1>
+          </a>
 
-          {/* DESKTOP NAV */}
-          <ul className="
-            hidden md:flex gap-10 items-center text-base font-medium
-            text-white dark:text-yellow-200
-          ">
-            {["About", "Skills", "Experience", "Projects", "Contact"].map((item) => (
-              <motion.li whileHover={{ scale: 1.05 }} key={item} className="relative group">
-                <a href={`#${item.toLowerCase()}`} className="pb-[3px]">
-                  {item}
-                </a>
-                <span
-                  className="
-                    absolute left-0 -bottom-[3px] h-[2px] w-0 
-                    bg-gradient-to-r from-purple-500 to-pink-500
-                    dark:from-yellow-300 dark:to-yellow-500
-                    transition-all duration-300 group-hover:w-full
-                  "
-                />
-              </motion.li>
-            ))}
-            <div className="ml-3">
-              <DarkModeToggle />
-            </div>
-          </ul>
+          <div className="hidden items-center gap-6 md:flex">
+            <ul className="flex items-center gap-7 text-base font-medium text-white dark:text-yellow-200">
+              {primaryNavItems.map((item) => (
+                <motion.li whileHover={{ scale: 1.04 }} key={item.label} className="group relative">
+                  <a
+                    href={item.href}
+                    target={item.external ? "_blank" : undefined}
+                    rel={item.external ? "noopener noreferrer" : undefined}
+                    className="pb-[2px]"
+                  >
+                    {item.label}
+                  </a>
+                  <span className="absolute -bottom-[3px] left-0 h-[2px] w-0 bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-300 group-hover:w-full dark:from-yellow-300 dark:to-yellow-500" />
+                </motion.li>
+              ))}
+            </ul>
+            <DarkModeToggle />
+          </div>
 
-          {/* MOBILE HAMBURGER */}
           <button
+            type="button"
             onClick={() => setOpen(true)}
-            className="md:hidden text-white dark:text-yellow-200 pointer-events-auto"
+            className="pointer-events-auto text-white dark:text-yellow-200 md:hidden"
+            aria-label="Open menu"
           >
-            <Bars3Icon className="w-8 h-8" />
+            <Bars3Icon className="h-8 w-8" />
           </button>
         </div>
       </motion.div>
 
-      {/* MOBILE MENU */}
       <AnimatePresence>
         {open && (
           <motion.div
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
-            transition={{ type: "spring", stiffness: 55 }}
-            className="
-              pointer-events-auto fixed top-0 right-0 w-[70%] h-screen
-              bg-black/80 backdrop-blur-2xl border-l border-white/10
-              flex flex-col gap-6 p-8 text-white dark:text-yellow-200
-            "
+            transition={{ type: "spring", stiffness: 58 }}
+            className="pointer-events-auto fixed right-0 top-0 flex h-screen w-[72%] flex-col gap-6 border-l border-white/10 bg-black/85 p-8 text-white backdrop-blur-2xl dark:text-yellow-200"
           >
             <button
+              type="button"
               className="self-end"
               onClick={() => setOpen(false)}
+              aria-label="Close menu"
             >
-              <XMarkIcon className="w-9 h-9 text-white dark:text-yellow-300" />
+              <XMarkIcon className="h-9 w-9" />
             </button>
 
-            <div className="flex flex-col gap-6 text-lg">
-              {["About", "Skills", "Experience", "Projects", "Contact"].map((item) => (
-                <motion.a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
+            <div className="flex flex-col gap-5 text-lg">
+              {primaryNavItems.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  target={item.external ? "_blank" : undefined}
+                  rel={item.external ? "noopener noreferrer" : undefined}
                   onClick={() => setOpen(false)}
-                  whileHover={{ scale: 1.05 }}
-                  className="hover:text-yellow-300"
+                  className="transition hover:text-yellow-300"
                 >
-                  {item}
-                </motion.a>
+                  {item.label}
+                </a>
               ))}
+            </div>
+
+            <div className="flex flex-col gap-3">
+              <a
+                href={resumePdf}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+                className="inline-block rounded-full border border-yellow-300/60 bg-yellow-300/10 px-4 py-2 text-center text-sm font-semibold text-yellow-200"
+              >
+                Download Resume
+              </a>
+              <a
+                href="#contact"
+                onClick={() => setOpen(false)}
+                className="inline-block rounded-full border border-cyan-300/60 bg-cyan-300/10 px-4 py-2 text-center text-sm font-semibold text-cyan-200"
+              >
+                Contact Me
+              </a>
+            </div>
+
+            <div className="border-t border-white/10 pt-4">
+              <p className="mb-3 text-xs uppercase tracking-[0.16em] text-gray-400">More</p>
+              <div className="flex flex-wrap gap-4 text-sm text-gray-300">
+                {secondaryNavItems.map((item) => (
+                  <a
+                    key={item}
+                    href={`#${item.toLowerCase()}`}
+                    onClick={() => setOpen(false)}
+                    className="transition hover:text-yellow-300"
+                  >
+                    {item}
+                  </a>
+                ))}
+              </div>
             </div>
 
             <div className="mt-auto">

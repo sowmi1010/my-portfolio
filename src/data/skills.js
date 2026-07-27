@@ -1,8 +1,5 @@
-// src/data/skills.js
 import java from "../assets/java.png";
 import python from "../assets/python.png";
-import html from "../assets/html.png";
-import css from "../assets/css.png";
 import tailwind from "../assets/tailwind.png";
 import javascript from "../assets/javascript.png";
 import react from "../assets/react.png";
@@ -10,150 +7,122 @@ import express from "../assets/express.png";
 import node from "../assets/node.png";
 import mongodb from "../assets/mongodb.webp";
 import mysql from "../assets/mysql.png";
-import elixir from "../assets/elixir.png";
-import phoenix from "../assets/phoenix.png";
 import dart from "../assets/dart.png";
 import flutter from "../assets/flutter.png";
+import phoenix from "../assets/phoenix.png";
 
 const skills = [
-  // ---------------- FRONTEND ----------------
   {
-    name: "HTML",
-    image: html,
-    category: "Frontend",
-    percent: 95,
-    tags: ["HTML", "React", "Tailwind"],
-    description: "Strong HTML structure knowledge, SEO-friendly tags, form handling, semantics, responsive layout scaffolding."
-  },
-  {
-    name: "CSS",
-    image: css,
-    category: "Frontend",
-    percent: 90,
-    tags: ["CSS", "Flexbox", "Grid"],
-    description: "Flexbox & Grid layouts, media queries, animations, responsive UI, positioning & modern layout techniques."
-  },
-  {
-    name: "JavaScript",
-    image: javascript,
-    category: "Frontend",
-    percent: 88,
-    tags: ["JavaScript", "DOM", "ES6"],
-    description: "Dynamic DOM interactions, async/await, JSON APIs, ES6 features, event-driven logic & reusable components."
-  },
-  {
-    name: "React",
+    name: "React.js",
     image: react,
-    category: "Frontend",
-    percent: 92,
-    tags: ["React", "Tailwind", "MongoDB"],
-    description: "Hooks, state management, routing, reusable components, React Router, axios integration, SPA performance."
+    category: "Primary Skills",
+    proficiency: "Strong",
+    tags: ["React", "Hooks", "Router", "State Management", "Reusable Components"],
+    description: "Build reusable UI components, handle routing, and manage state for scalable single-page applications.",
   },
-  {
-    name: "Tailwind CSS",
-    image: tailwind,
-    category: "Frontend",
-    percent: 94,
-    tags: ["Tailwind", "Responsive"],
-    description: "Rapid UI building, utility classes, responsive design patterns, component reusability, dark mode styling."
-  },
-
-  // ---------------- BACKEND ----------------
   {
     name: "Node.js",
     image: node,
-    category: "Backend",
-    percent: 86,
-    tags: ["Node", "Express"],
-    description: "Backend logic execution, REST API creation, server-side rendering, async non-blocking operations."
+    category: "Primary Skills",
+    proficiency: "Strong",
+    tags: ["Node.js", "Express", "REST API", "JWT", "Middleware"],
+    description: "Develop backend services and asynchronous workflows for production-ready web applications.",
   },
   {
     name: "Express.js",
     image: express,
-    category: "Backend",
-    percent: 82,
-    tags: ["Express", "Node"],
-    description: "Routing, middleware, REST APIs, JWT auth, handling CRUD operations with MongoDB & MySQL."
+    category: "Primary Skills",
+    proficiency: "Strong",
+    tags: ["Express", "Routing", "Middleware", "Auth", "Error Handling"],
+    description: "Design secure REST APIs with middleware, routing, and structured controller architecture.",
+  },
+  {
+    name: "MongoDB",
+    image: mongodb,
+    category: "Primary Skills",
+    proficiency: "Comfortable",
+    tags: ["MongoDB", "Mongoose", "CRUD", "Aggregation", "Schema Design"],
+    description: "Model document data with Mongoose, implement CRUD flows, and optimize common database queries.",
+  },
+  {
+    name: "JavaScript",
+    image: javascript,
+    category: "Primary Skills",
+    proficiency: "Strong",
+    tags: ["JavaScript", "ES6+", "Async/Await", "DOM", "Array Methods"],
+    description: "Write clean modern JavaScript for client logic, API integration, and component behavior.",
+  },
+  {
+    name: "Tailwind CSS",
+    image: tailwind,
+    category: "Primary Skills",
+    proficiency: "Strong",
+    tags: ["Tailwind", "Responsive Design", "Utility Classes", "Design System"],
+    description: "Develop fast, consistent UIs with utility-first patterns and reusable component styles.",
+  },
+  {
+    name: "REST APIs",
+    image: express,
+    category: "Primary Skills",
+    proficiency: "Strong",
+    tags: ["REST API", "CRUD Endpoints", "Validation", "Authentication", "Status Codes"],
+    description: "Design and integrate robust API endpoints with authentication, validation, and clean request flows.",
+  },
+  {
+    name: "Git/GitHub",
+    image: javascript,
+    category: "Primary Skills",
+    proficiency: "Comfortable",
+    tags: ["Git", "GitHub", "Version Control", "Branching", "Pull Requests"],
+    description: "Manage feature branches, pull requests, and clean commit history for collaborative development.",
+  },
+  {
+    name: "MySQL",
+    image: mysql,
+    category: "Secondary Skills",
+    proficiency: "Comfortable",
+    tags: ["SQL", "Relational Schema", "Joins", "Query Optimization"],
+    description: "Work with relational models, joins, and reporting queries for structured application data.",
   },
   {
     name: "Java",
     image: java,
-    category: "Backend",
-    percent: 70,
-    tags: ["Java", "JDBC", "Spring Boot"],
-    description: "Core Java OOP, JDBC connection to MySQL, basic Spring Boot REST APIs, console & mini-project development."
+    category: "Secondary Skills",
+    proficiency: "Familiar",
+    tags: ["Java", "OOP", "Spring Boot", "Collections"],
+    description: "Apply Java fundamentals and build basic backend services using object-oriented design.",
   },
   {
     name: "Python",
     image: python,
-    category: "Backend",
-    percent: 75,
-    tags: ["Python", "Flask", "Django"],
-    description: "Flask REST API basics, small Django MVC concepts, scripting, JSON file automation & data handling."
-  },
-
-  // ---------------- DATABASE ----------------
-  {
-    name: "MongoDB",
-    image: mongodb,
-    category: "Database",
-    percent: 80,
-    tags: ["Mongo", "React", "Node"],
-    description: "Schema design using Mongoose, CRUD ops, aggregation pipelines, REST API integration, cloud Atlas hosting."
-  },
-
-
-  {
-    name: "MySQL",
-    image: mysql,
-    category: "Database",
-    percent: 78,
-    tags: ["SQL", "Database"],
-    description: "SQL queries, joins, stored procedures, relational schema design, JDBC + Express integration."
-  },
-
-  // ---------------- TOOLS ----------------
-  {
-    name: "Git",
-    image: javascript,
-    category: "Tools",
-    percent: 65,
-    tags: ["Git"],
-    description: "Version control, project commits, branching, GitHub push, pull request basics, repo hosting & docs."
-  },
-  {
-    name: "Elixir",
-    image: elixir,
-    category: "Backend",
-    percent: 65,
-    tags: ["Elixir", "Phoenix", "LiveView"],
-    description: "Functional backend programming, fault-tolerant & high-concurrency apps on BEAM VM."
-  },
-  {
-    name: "Phoenix Framework",
-    image: phoenix,
-    category: "Backend",
-    percent: 62,
-    tags: ["Phoenix", "LiveView", "REST"],
-    description: "Phoenix MVC, LiveView interactive UI, scalable real-time backends for modern web apps."
-  },
-
-  // ---------------- MOBILE ----------------
-  {
-    name: "Dart",
-    image: dart,
-    category: "Mobile",
-    percent: 80,
-    tags: ["Dart", "Flutter"],
-    description: "Strong Dart fundamentals, OOP concepts, async programming, futures & streams for Flutter apps."
+    category: "Secondary Skills",
+    proficiency: "Familiar",
+    tags: ["Python", "Flask", "Automation", "Scripting"],
+    description: "Use Python for scripting, API prototypes, and workflow automation tasks.",
   },
   {
     name: "Flutter",
     image: flutter,
-    category: "Mobile",
-    percent: 85,
-    tags: ["Flutter", "Dart", "Mobile UI"],
-    description: "Cross-platform app development, widgets, state management, animations, responsive UI & Firebase-ready apps."
+    category: "Secondary Skills",
+    proficiency: "Comfortable",
+    tags: ["Flutter", "Widgets", "State Management", "Responsive UI"],
+    description: "Build cross-platform mobile interfaces with reusable widgets and practical UX flows.",
+  },
+  {
+    name: "Dart",
+    image: dart,
+    category: "Secondary Skills",
+    proficiency: "Familiar",
+    tags: ["Dart", "OOP", "Async", "Futures"],
+    description: "Use Dart fundamentals to structure maintainable mobile app code and async logic.",
+  },
+  {
+    name: "Phoenix",
+    image: phoenix,
+    category: "Secondary Skills",
+    proficiency: "Familiar",
+    tags: ["Phoenix", "LiveView", "Elixir", "Realtime Features"],
+    description: "Build real-time web interfaces and backend workflows using Phoenix Framework and LiveView.",
   },
 ];
 

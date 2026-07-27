@@ -1,6 +1,11 @@
 import { useRef } from "react";
 
-export default function MagneticBtn({ children, className }) {
+export default function MagneticBtn({
+  children,
+  className,
+  type = "button",
+  ...props
+}) {
   const ref = useRef(null);
 
   const move = (e) => {
@@ -15,9 +20,11 @@ export default function MagneticBtn({ children, className }) {
   return (
     <button
       ref={ref}
+      type={type}
       onMouseMove={move}
       onMouseLeave={leave}
       className={className}
+      {...props}
     >
       {children}
     </button>
